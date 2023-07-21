@@ -61,7 +61,7 @@
     <script id="hexo-configurations">
     let Global = window.Global || {};
     Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"静水流深","subtitle":{"text":["Loading……"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/jiangmingce","email":"jmc.lu@foxmail.com"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"静水流深","subtitle":{"text":["Loading……"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/jiangmingce","email":"jmc.lu@foxmail.com"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"tags":{"Tags":"TAGS#取名随意","icon":"fa-solid fa-tags","path":"/tags/"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
     Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     Global.data_config = {"masonry":false};
   </script>
@@ -213,6 +213,22 @@
                                 
                             </li>
                     
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-tags"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
                     
                         <li class="navbar-item search search-popup-trigger">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -251,6 +267,21 @@
                     <!-- Submenu -->
                     
             
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/tags/"  >
+                             
+                                
+                                    <i class="fa-solid fa-tags"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
 
         </ul>
     </div>
@@ -281,7 +312,7 @@
                 </div>
                 <div class="statistics">
                     <a class="item" href="/tags">
-                        <div class="number">1</div>
+                        <div class="number">4</div>
                         <div class="label">Tags</div>
                     </a>
                     <a class="item" href="/categories">
@@ -289,7 +320,7 @@
                         <div class="label">Categories</div>
                     </a>
                     <a class="item" href="/archives">
-                        <div class="number">3</div>
+                        <div class="number">4</div>
                         <div class="label">Posts</div>
                     </a>
                 </div>
@@ -315,31 +346,95 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2023/01/10/markdown/">
-                        markdown语法初阶（1）
+                    <a href="/2023/07/20/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8FWindowsCleaner/">
+                        关于程序WindowsCleaner
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        1.了解markdownMarkdown 是一种轻量级标记语言， 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。常用于笔记，博客，评论中。拥有着tx...
+                        引言C盘爆满，想开发一个程序来清理一下垃圾，于是就做出了它
+粗略剖析原理正文：
+
+引入必要的头文件在程序开头，我们引入了一些必要的头文件，包括&lt;iostream&gt;、&lt;windows.h&gt;、&lt;shellapi.h&gt;、...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Jan 10 2023 13:27:22 GMT+0800">
+            <span class="home-article-date" data-date="Thu Jul 20 2023 21:43:12 GMT+0800">
                 
-                    2023-01-10
+                    2023-07-20
                 
             </span>
         </span>
         
         
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/C/">C++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
     </div>
 
-    <a href="/2023/01/10/markdown/">Read more<span class="seo-reader-text">markdown语法初阶（1）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/07/20/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8FWindowsCleaner/">Read more<span class="seo-reader-text">关于程序WindowsCleaner</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2023/07/20/Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/">
+                        Markdown语法教程
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        引言：在今天的数字时代，我们经常需要创建和共享文档，无论是在学校、工作还是个人生活中。然而，使用传统的文本编辑器编写文档可能会显得繁琐和乏味。为了解决这个问题，Markdown应运而生。Markdown是一种轻量级的标记语言，通过简单的语法，可以将文...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Jul 20 2023 21:02:10 GMT+0800">
+                
+                    2023-07-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/markdown/">markdown</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/07/20/Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/">Read more<span class="seo-reader-text">Markdown语法教程</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -353,15 +448,15 @@
 
                 <h3 class="home-article-title">
                     <a href="/2023/01/08/linux%E6%95%99%E7%A8%8B%E4%B9%8B%E4%B8%80/">
-                        linux教程
+                        linux教程（一）
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Linux入门——用最直白的语言带你入门Linux在此之前其实这个话题很长很长，我也没有明确的弄明大体的走向，一步一步走吧，车到山前必有路，写着写着事情就清楚了。
+                        在此之前其实这个话题很长很长，我也没有明确的弄明大体的走向，一步一步走吧，车到山前必有路，写着写着事情就清楚了。
 第一章：必须先掌握的计算机基础知识1.重要性
-关于重要性我也不想再多说了，这是任何编程...
+关于重要性我也不想再多说了，这是任何编程或运维中最最基础的概念，不掌握这些基本就无法进行下...
                     
                 </div>
 
@@ -376,9 +471,21 @@
         </span>
         
         
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/LINUX/">LINUX</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
     </div>
 
-    <a href="/2023/01/08/linux%E6%95%99%E7%A8%8B%E4%B9%8B%E4%B8%80/">Read more<span class="seo-reader-text">linux教程</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/01/08/linux%E6%95%99%E7%A8%8B%E4%B9%8B%E4%B8%80/">Read more<span class="seo-reader-text">linux教程（一）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
             </li>

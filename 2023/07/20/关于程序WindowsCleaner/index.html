@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="JiangMIngCe">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/07/20/关于程序windowscleaner/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="引言C盘爆满，想开发一个程序来清理一下垃圾，于是就做出了它 粗略剖析原理正文：  引入必要的头文件在程序开头，我们引入了一些必要的头文件，包括&lt;iostream&gt;、&lt;windows.h&gt;、&lt;shellapi.h&gt;、&lt;shlobj.h&gt;、&lt;string&gt;和&lt;vector&gt;。这些头文件提供了我们所需的函数和数据结构，以便与Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于程序WindowsCleaner">
+<meta property="og:url" content="http://example.com/2023/07/20/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8FWindowsCleaner/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引言C盘爆满，想开发一个程序来清理一下垃圾，于是就做出了它 粗略剖析原理正文：  引入必要的头文件在程序开头，我们引入了一些必要的头文件，包括&lt;iostream&gt;、&lt;windows.h&gt;、&lt;shellapi.h&gt;、&lt;shlobj.h&gt;、&lt;string&gt;和&lt;vector&gt;。这些头文件提供了我们所需的函数和数据结构，以便与Wind">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-20T13:43:12.000Z">
+<meta property="article:modified_time" content="2023-07-20T14:08:26.264Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/88363324.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/88363324.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/88363324.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            关于程序WindowsCleaner -
+        
+        JiangMIngCeの小窝
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"静水流深","subtitle":{"text":["Loading……"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/jiangmingce","email":"jmc.lu@foxmail.com"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"tags":{"Tags":"TAGS#取名随意","icon":"fa-solid fa-tags","path":"/tags/"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                JiangMIngCeの小窝
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-tags"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/tags/"  >
+                             
+                                
+                                    <i class="fa-solid fa-tags"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                
+                  <h1 class="article-title-regular">关于程序WindowsCleaner</h1>
+                
+              </div>
+              
+                     
+            
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/88363324.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">JiangMIngCe</span>
+                            
+                                <span class="author-label">Lv1</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-07-20 21:43:12</span>
+        <span class="mobile">2023-07-20 21:43:12</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-07-20 22:08:26</span>
+            <span class="mobile">2023-07-20 22:08:26</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>C盘爆满，想开发一个程序来清理一下垃圾，于是就做出了它</p>
+<h2 id="粗略剖析原理"><a href="#粗略剖析原理" class="headerlink" title="粗略剖析原理"></a>粗略剖析原理</h2><p>正文：</p>
+<ol>
+<li><p>引入必要的头文件<br>在程序开头，我们引入了一些必要的头文件，包括<code>&lt;iostream&gt;</code>、<code>&lt;windows.h&gt;</code>、<code>&lt;shellapi.h&gt;</code>、<code>&lt;shlobj.h&gt;</code>、<code>&lt;string&gt;</code>和<code>&lt;vector&gt;</code>。这些头文件提供了我们所需的函数和数据结构，以便与WindowsAPI进行交互。</p>
+</li>
+<li><p>清理系统盘temp文件夹<br>我们首先介绍的是清理系统盘的临时文件夹功能。通过调用<code>GetTempPathW</code>函数获取系统的临时文件夹路径，然后使用<code>calculateDirectorySize</code>函数计算该文件夹的总大小。接下来，我们使用<code>cleanDirectory</code>函数清理临时文件夹，并将清理的文件大小打印出来。</p>
+</li>
+<li><p>删除回收站文件<br>通过调用<code>SHEmptyRecycleBin</code>函数，我们可以删除回收站中的所有文件。该函数接受一些标志参数，我们使用<code>SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND</code>来禁用</p>
+</li>
+<li><p>清理QQ和微信缓存<br>我们定义了一个<code>cleanCache</code>函数，用于清理指定路径下的缓存文件。该函数使用<code>calculateDirectorySize</code>函数计算缓存目录的总大小，并调用<code>cleanDirectory</code>函数清理缓存目录。最后，我们打印出清理的缓存大小。</p>
+</li>
+<li><p>查找磁盘中大文件<br>我们定义了一个<code>findLargeFiles</code>函数，用于在指定路径下查找大于指定阈值的文件。该函数使用<code>calculateDirectorySize</code>函数计算目录的总大小，并与阈值比较。如果目录大小超过阈值，则将文件路径添加到一个<code>vector</code>中。在递归调用时，我们使用<code>findLargeFiles</code>函数遍历子目录并查找大文件。最后，我们将找到的大文件路径打印出来。</p>
+</li>
+<li><p>主函数<br>在主函数中，我们使用一个无限循环来提供菜单选项。用户可以选择不同的功能，包括清理系统盘temp文件夹、删除回收站文件、清理QQ缓存、清理微信缓存和查找磁盘中大文件。根据用户的选择，我们调用相应的函数来执行相应的操作。最后，用户可以选择退出程序。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>代码源码：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;shellapi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;shlobj.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cleanDirectory</span><span class="params">(<span class="type">const</span> wstring&amp; directory, ULONGLONG&amp; totalSize)</span> </span>&#123;</span><br><span class="line">    WIN32_FIND_DATAW findData;</span><br><span class="line">    HANDLE hFind = <span class="built_in">FindFirstFileW</span>((directory + <span class="string">L&quot;\\*&quot;</span>).<span class="built_in">c_str</span>(), &amp;findData);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hFind != INVALID_HANDLE_VALUE) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">const</span> wstring fileName = findData.cFileName;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fileName != <span class="string">L&quot;.&quot;</span> &amp;&amp; fileName != <span class="string">L&quot;..&quot;</span>) &#123;</span><br><span class="line">                <span class="type">const</span> wstring fullPath = directory + <span class="string">L&quot;\\&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (findData.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY) &#123;</span><br><span class="line">                    <span class="built_in">cleanDirectory</span>(fullPath, totalSize);</span><br><span class="line">                    <span class="built_in">RemoveDirectoryW</span>(fullPath.<span class="built_in">c_str</span>());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    ULONGLONG fileSize = <span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeLow) +</span><br><span class="line">                        (<span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeHigh) &lt;&lt; <span class="number">32</span>);</span><br><span class="line">                    totalSize += fileSize;</span><br><span class="line">                    <span class="built_in">DeleteFileW</span>(fullPath.<span class="built_in">c_str</span>());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (<span class="built_in">FindNextFileW</span>(hFind, &amp;findData));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">FindClose</span>(hFind);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ULONGLONG <span class="title">calculateDirectorySize</span><span class="params">(<span class="type">const</span> wstring&amp; directory)</span> </span>&#123;</span><br><span class="line">    ULONGLONG totalSize = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    WIN32_FIND_DATAW findData;</span><br><span class="line">    HANDLE hFind = <span class="built_in">FindFirstFileW</span>((directory + <span class="string">L&quot;\\*&quot;</span>).<span class="built_in">c_str</span>(), &amp;findData);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hFind != INVALID_HANDLE_VALUE) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">const</span> wstring fileName = findData.cFileName;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fileName != <span class="string">L&quot;.&quot;</span> &amp;&amp; fileName != <span class="string">L&quot;..&quot;</span>) &#123;</span><br><span class="line">                <span class="type">const</span> wstring fullPath = directory + <span class="string">L&quot;\\&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (!(findData.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY)) &#123;</span><br><span class="line">                    ULONGLONG fileSize = <span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeLow) +</span><br><span class="line">                        (<span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeHigh) &lt;&lt; <span class="number">32</span>);</span><br><span class="line">                    totalSize += fileSize;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    totalSize += <span class="built_in">calculateDirectorySize</span>(fullPath);  <span class="comment">// 递归计算子目录大小</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (<span class="built_in">FindNextFileW</span>(hFind, &amp;findData));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">FindClose</span>(hFind);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> totalSize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cleanCache</span><span class="params">(<span class="type">const</span> wstring&amp; cachePath, <span class="type">const</span> <span class="type">wchar_t</span>* cacheName)</span> </span>&#123;</span><br><span class="line">    ULONGLONG totalSize = <span class="built_in">calculateDirectorySize</span>(cachePath);</span><br><span class="line">    <span class="built_in">cleanDirectory</span>(cachePath, totalSize);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;已清理&quot;</span> &lt;&lt; cacheName &lt;&lt; <span class="string">&quot;缓存大小: &quot;</span> &lt;&lt; totalSize / (<span class="number">1024</span> * <span class="number">1024</span>) &lt;&lt; <span class="string">&quot; MB\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">emptyRecycleBin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">SHEmptyRecycleBin</span>(<span class="literal">NULL</span>, <span class="literal">NULL</span>, SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND);</span><br><span class="line">    ULONGLONG recycleBinSize = <span class="built_in">calculateDirectorySize</span>(<span class="string">L&quot;C:\\$Recycle.Bin&quot;</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;已清理文件大小: &quot;</span> &lt;&lt; recycleBinSize / (<span class="number">1024</span> * <span class="number">1024</span>) &lt;&lt; <span class="string">&quot; MB\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;wstring&gt; <span class="title">findLargeFiles</span><span class="params">(<span class="type">const</span> wstring&amp; directory, ULONGLONG thresholdSize)</span> </span>&#123;</span><br><span class="line">    vector&lt;wstring&gt; largeFiles;</span><br><span class="line"></span><br><span class="line">    WIN32_FIND_DATAW findData;</span><br><span class="line">    HANDLE hFind = <span class="built_in">FindFirstFileW</span>((directory + <span class="string">L&quot;\\*&quot;</span>).<span class="built_in">c_str</span>(), &amp;findData);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hFind != INVALID_HANDLE_VALUE) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">const</span> wstring fileName = findData.cFileName;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fileName != <span class="string">L&quot;.&quot;</span> &amp;&amp; fileName != <span class="string">L&quot;..&quot;</span>) &#123;</span><br><span class="line">                <span class="type">const</span> wstring fullPath = directory + <span class="string">L&quot;\\&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (!(findData.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY)) &#123;</span><br><span class="line">                    ULONGLONG fileSize = <span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeLow) +</span><br><span class="line">                        (<span class="built_in">static_cast</span>&lt;ULONGLONG&gt;(findData.nFileSizeHigh) &lt;&lt; <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (fileSize &gt;= thresholdSize) &#123;</span><br><span class="line">                        largeFiles.<span class="built_in">push_back</span>(fullPath);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    vector&lt;wstring&gt; subLargeFiles = <span class="built_in">findLargeFiles</span>(fullPath, thresholdSize);  <span class="comment">// 递归查找子目录中的大文件</span></span><br><span class="line">                    largeFiles.<span class="built_in">insert</span>(largeFiles.<span class="built_in">end</span>(), subLargeFiles.<span class="built_in">begin</span>(), subLargeFiles.<span class="built_in">end</span>());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (<span class="built_in">FindNextFileW</span>(hFind, &amp;findData));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">FindClose</span>(hFind);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> largeFiles;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="type">int</span> choice;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Windows Cleaner - 清理垃圾文件和软件缓存\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;以下为可选功能\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;1. 清理系统盘temp文件夹（无风险）\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;2. 删除回收站文件\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;3. 清理QQ缓存\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;4. 清理微信缓存\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;5. 查找磁盘中大文件\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;6. 退出\n&quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;请输入:\n&quot;</span>;</span><br><span class="line">        cin &gt;&gt; choice;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (choice == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">wchar_t</span> tempPath[MAX_PATH];</span><br><span class="line">            <span class="built_in">GetTempPathW</span>(MAX_PATH, tempPath);</span><br><span class="line">            <span class="function">wstring <span class="title">tempDir</span><span class="params">(tempPath)</span></span>;</span><br><span class="line">            ULONGLONG totalSize = <span class="built_in">calculateDirectorySize</span>(tempDir);</span><br><span class="line"></span><br><span class="line">            <span class="built_in">cleanDirectory</span>(tempDir, totalSize);</span><br><span class="line">            totalSize /= (<span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;已清理文件大小: &quot;</span> &lt;&lt; totalSize &lt;&lt; <span class="string">&quot; MB\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (choice == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">emptyRecycleBin</span>();</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;回收站已清空\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (choice == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="built_in">cleanCache</span>(<span class="string">L&quot;C:\\Tencent\\QQ\\QQBrowser\\Cache&quot;</span>, <span class="string">L&quot;QQ&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (choice == <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="built_in">cleanCache</span>(<span class="string">L&quot;C:\\Tencent\\WeChat\\Cache&quot;</span>, <span class="string">L&quot;微信&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (choice == <span class="number">5</span>) &#123;</span><br><span class="line">            ULONGLONG thresholdSize;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请输入要搜索的文件大小阈值（以兆字节为单位）:\n&quot;</span>;</span><br><span class="line">            cin &gt;&gt; thresholdSize;</span><br><span class="line"></span><br><span class="line">            thresholdSize *= (<span class="number">1024</span> * <span class="number">1024</span>); <span class="comment">// 将输入的兆字节转换为字节</span></span><br><span class="line"></span><br><span class="line">            wstring drivePath;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请输入要搜索的磁盘路径（如C:\\）:\n&quot;</span>;</span><br><span class="line">            cin.<span class="built_in">ignore</span>();  <span class="comment">// 忽略之前的换行符</span></span><br><span class="line">            <span class="built_in">getline</span>(wcin, drivePath);</span><br><span class="line"></span><br><span class="line">            vector&lt;wstring&gt; largeFiles = <span class="built_in">findLargeFiles</span>(drivePath, thresholdSize);</span><br><span class="line">            <span class="keyword">if</span> (!largeFiles.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;以下是大于等于指定阈值的文件:\n&quot;</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; filePath : largeFiles) &#123;</span><br><span class="line">                    wcout &lt;&lt; filePath &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;未找到大于等于指定阈值的文件\n&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (choice == <span class="number">6</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 关于程序WindowsCleaner</li>
+        <li><strong>Author:</strong> JiangMIngCe</li>
+        <li><strong>Created at:</strong> 2023-07-20 21:43:12</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-07-20 22:08:26
+            </li>
+        
+        <li>
+            <strong>Link:</strong> jiangmingce.github.io/2023/07/20/关于程序WindowsCleaner/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/C/">#C++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/07/20/Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Markdown语法教程</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">关于程序WindowsCleaner</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%97%E7%95%A5%E5%89%96%E6%9E%90%E5%8E%9F%E7%90%86"><span class="nav-text">粗略剖析原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">JiangMIngCe</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.2</a>
+        </div>
+        
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
